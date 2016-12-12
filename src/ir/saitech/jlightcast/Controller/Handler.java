@@ -65,6 +65,5 @@ public class Handler implements JLCSocketAccepterEx.SocketAcceptListener {
         Station.StreamBitrate sb;
         sb = clientSocket.getStreamBitrate();
 
-
     }
 }

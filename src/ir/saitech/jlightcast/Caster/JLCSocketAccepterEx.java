@@ -85,7 +85,8 @@ public class JLCSocketAccepterEx implements Runnable {
                     // Make ClientSocket object using Station Id & bitrate
                     station = StationList.findByName(sl.get(0));
                     if (station == null){
-                        Out.elog("Accepter-makeClient", "Station.findByName returned null !");
+                        Out.elog("Accepter-makeClient", "StationList.findByName returned null !");
+                        sc.write(ByteBuffer.wrap(HTTPResponse.getNewFail().getBytes()));
                     }
                     // Make ClientSocket object using Station Id & bitrate if given bitrate and StationId are correct
                     if (pipeExists(station.getId(), bitrate))
@@ -129,6 +130,24 @@ public class JLCSocketAccepterEx implements Runnable {
     }
 
     private boolean pipeExists(int sId, Station.StreamBitrate sb){
+        // get Station from StationId
+        Station st;
+        st = StationList.findById(sId);
 
+        // get Bitrates from Station
+        Station.StreamBitrate[] ssb;
+        ssb = st.getBitrates();
+        // Although i know it is not null, i still check in case sh*t happens!(Multithreaded nightmare!)
+        if (ssb == null) {
+            Out.elog("Accepter-pipeExists","getBitrates returned null !");
+            return false;
+        }
+
+        // Check to see if the requested bitrate exists in requested station
+        for (int i = 0; i < ssb.length; i++) {
+            if (ssb[i] == sb) return true;
+        }
+
+        return false;
     }
 }

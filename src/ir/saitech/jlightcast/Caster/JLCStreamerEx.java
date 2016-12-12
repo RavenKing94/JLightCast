@@ -152,6 +152,7 @@ public class JLCStreamerEx implements Runnable {
     }
     
     public synchronized void addClient(ClientSocket clientSocket) {
+        ready = false;
             try {
                 clientSocket
                         .getSocketChannel()
@@ -161,6 +162,7 @@ public class JLCStreamerEx implements Runnable {
             } catch (IOException e) {
                 Out.elog("Streamer-addClient", e.getMessage());
                 connected--;
+                ready = true;
                 return;
             }
             try {
@@ -172,6 +174,7 @@ public class JLCStreamerEx implements Runnable {
                 connected--;
             }
             Out.println(" - "+connected);
+        ready = true;
     }
 
     public synchronized void updateStations(){

@@ -8,8 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6573a97e-7dd3-4592-80b6-121ea6b08dff" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" />
     </list>
     <ignored path="JLightCast.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,8 +52,8 @@
       <file leaf-file-name="JLCStreamerEx.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1833">
-              <caret line="178" column="22" lean-forward="true" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+            <state relative-caret-position="357">
+              <caret line="120" column="19" lean-forward="true" selection-start-line="120" selection-start-column="19" selection-end-line="120" selection-end-column="19" />
               <folding>
                 <element signature="e#1255#1256#0" expanded="true" />
                 <element signature="e#1294#1295#0" expanded="true" />
@@ -822,12 +820,12 @@
       <workItem from="1481413064271" duration="3703000" />
       <workItem from="1481493284457" duration="6171000" />
       <workItem from="1481527860899" duration="8550000" />
-      <workItem from="1481563771933" duration="8490000" />
+      <workItem from="1481563771933" duration="8899000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74308000" />
+    <option name="totallyTimeSpent" value="74717000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -1300,8 +1298,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1833">
-          <caret line="178" column="22" lean-forward="true" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+        <state relative-caret-position="357">
+          <caret line="120" column="19" lean-forward="true" selection-start-line="120" selection-start-column="19" selection-end-line="120" selection-end-column="19" />
           <folding>
             <element signature="e#1255#1256#0" expanded="true" />
             <element signature="e#1294#1295#0" expanded="true" />

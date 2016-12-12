@@ -1,6 +1,7 @@
 package ir.saitech.jlightcast.Caster;
 
 import ir.saitech.jlightcast.Classes.ClientSocket;
+import ir.saitech.jlightcast.Classes.PipeInfo;
 import ir.saitech.jlightcast.Classes.StationPipes;
 import ir.saitech.jlightcast.Utils.Out;
 
@@ -10,6 +11,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -26,17 +28,13 @@ public class JLCStreamerEx implements Runnable {
     private List<PipedReader> prl;
     private SocketChannel selSocket;
     private Selector sel;
-    private int[] portList;
     private final int BUFFERSIZE;
-    private boolean injectHead;
     private int connected=0;
-    private SynchronousQueue<ClientSocket> clientQueue;
     private ClientSocket cls;
 
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;
-        clientQueue = new SynchronousQueue<>(true);
     }
 
     @Override
@@ -50,11 +48,15 @@ public class JLCStreamerEx implements Runnable {
         int[] len=new int[StationPipes.count()];
         byte[][] bt = new byte[StationPipes.count()][BUFFERSIZE];
         char[][] ch = new char[StationPipes.count()][BUFFERSIZE];
+        PipeInfo[] pi = new PipeInfo[StationPipes.count()];
         ByteBuffer bb;
         while (true){
             for (int f = 0; f< StationPipes.count(); f++) {
                 try {
+                    // read from all pipes
                     len[f]=prl.get(f).read(ch[f]);
+                    charArrayToByteArray(ch[f],bt[f],len[f]);
+                    pi[f]
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -92,6 +94,12 @@ public class JLCStreamerEx implements Runnable {
             }
         }
     }
+
+    private void charArrayToByteArray(char[] ch, byte[] bt, int len){
+        for (int i = 0; i < len; i++) {
+            bt[i] = (byte)ch[i];
+        }
+    }
     
     public synchronized void addClient(ClientSocket clientSocket) {
             try {
@@ -114,9 +122,5 @@ public class JLCStreamerEx implements Runnable {
                 connected--;
             }
             Out.println(" - "+connected);
-    }
-
-    public SynchronousQueue<ClientSocket> getClientQueue() {
-        return clientQueue;
     }
 }

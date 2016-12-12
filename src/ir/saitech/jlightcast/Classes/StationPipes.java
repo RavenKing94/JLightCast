@@ -25,4 +25,12 @@ public class StationPipes {
     public static synchronized int count(){
         return stp.size();
     }
+
+    public static synchronized PipeInfo[] getKeys() {
+        return (PipeInfo[]) stp.keySet().toArray();
+    }
+
+    public static synchronized PipeInfo[] getValues() {
+        return (PipeInfo[]) stp.keySet().toArray();
+    }
 }

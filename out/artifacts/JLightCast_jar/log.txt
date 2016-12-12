@@ -1,0 +1,23 @@
+Started @ 2016/12/02 05:04:18
+2016/12/02 05:04:18**[i] main : config file specified : ~/x
+2016/12/02 05:04:18**[i] Main : port : 9096
+2016/12/02 05:04:18**[i] Main : configAddr : ~/x
+Started @ 2016/12/02 05:05:57
+2016/12/02 05:05:57**[i] main : config file specified : ~/x
+2016/12/02 05:05:57**[i] Main : port : 9096
+2016/12/02 05:05:57**[i] Main : configAddr : ~/x
+Started @ 2016/12/02 05:05:58
+2016/12/02 05:05:58**[i] main : config file specified : ~/x
+2016/12/02 05:05:58**[i] Main : port : 9096
+2016/12/02 05:05:58**[i] Main : configAddr : ~/x
+Started @ 2016/12/02 05:05:58
+2016/12/02 05:05:58**[i] main : config file specified : ~/x
+2016/12/02 05:05:58**[i] Main : port : 9096
+2016/12/02 05:05:58**[i] Main : configAddr : ~/x
+Started @ 2016/12/02 05:05:59
+2016/12/02 05:05:59**[i] main : config file specified : ~/x
+2016/12/02 05:05:59**[i] Main : port : 9096
+2016/12/02 05:05:59**[i] Main : configAddr : ~/x
+Started @ 2016/12/02 05:06:05
+2016/12/02 05:06:05**[i] Main : port : 9096
+2016/12/02 05:06:05**[i] Main : configAddr : jlc_default.conf

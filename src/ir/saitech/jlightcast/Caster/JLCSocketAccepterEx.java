@@ -88,9 +88,11 @@ public class JLCSocketAccepterEx implements Runnable {
                         Out.elog("Accepter-makeClient", "StationList.findByName returned null !");
                         sc.write(ByteBuffer.wrap(HTTPResponse.getNewFail().getBytes()));
                     }
-                    // Make ClientSocket object using Station Id & bitrate if given bitrate and StationId are correct
-                    if (pipeExists(station.getId(), bitrate))
-                        return new ClientSocket(sc, new PipeInfo(station.getId(),bitrate));
+                    // Make ClientSocket object using StationId & bitrate if given bitrate and StationId are correct
+                    if (pipeExists(station.getId(), bitrate)) {
+                        sc.write(ByteBuffer.wrap(HTTPResponse.getNewOk().getBytes()));
+                        return new ClientSocket(sc, new PipeInfo(station.getId(), bitrate));
+                    }
                     else {
                         // No bitrate (404)
                         sc.write(ByteBuffer.wrap(HTTPResponse.getNewFail().getBytes()));

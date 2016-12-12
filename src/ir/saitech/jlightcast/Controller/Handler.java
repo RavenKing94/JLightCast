@@ -42,6 +42,7 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
         Station.StreamBitrate[] sbr = {Station.StreamBitrate.Q48,
                 Station.StreamBitrate.Q96};
         addStation("The Trip", Station.StreamType.WEB, sbr, "http://ice1.somafm.com/thetrip-128-mp3");
+        streamer.updateStations();
     }
 
     /**
@@ -81,5 +82,12 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
     public void run() {
         init();
         init_test();
+        while (true){
+            try {
+                TimeUnit.MILLISECONDS.sleep(50);
+            } catch (InterruptedException e) {
+                Out.elog("Handler-run",e.getMessage());
+            }
+        }
     }
 }

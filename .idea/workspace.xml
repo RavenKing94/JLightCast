@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6573a97e-7dd3-4592-80b6-121ea6b08dff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" />
     </list>
     <ignored path="JLightCast.iws" />
@@ -43,9 +42,12 @@
       <file leaf-file-name="Handler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="465">
+              <caret line="82" column="20" lean-forward="false" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
+              <folding>
+                <element signature="e#678#679#0" expanded="true" />
+                <element signature="e#710#711#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -821,12 +823,12 @@
       <workItem from="1481413064271" duration="3703000" />
       <workItem from="1481493284457" duration="6171000" />
       <workItem from="1481527860899" duration="8550000" />
-      <workItem from="1481563771933" duration="9115000" />
+      <workItem from="1481563771933" duration="9684000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74933000" />
+    <option name="totallyTimeSpent" value="75502000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -1302,9 +1304,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="465">
+          <caret line="82" column="20" lean-forward="false" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
+          <folding>
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#710#711#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * Created by blk-arch on 12/9/16.
  *
  */
-public class Handler implements JLCSocketAccepterEx.SocketAcceptListener {
+public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListener {
 
     ExecutorService tpe = Executors.newFixedThreadPool(4);
     JLCSocketAccepterEx accepter;
@@ -23,17 +23,17 @@ public class Handler implements JLCSocketAccepterEx.SocketAcceptListener {
 
     public Handler(int port){
         this.port = port;
-        init();
-        init_test();
     }
 
     public void init(){
         Out.ilog("Handler","init() started");
         accepter = new JLCSocketAccepterEx(port);
         accepter.setServerSocketListener(this);
+        streamer = new JLCStreamerEx(2048);
         tpe.execute(accepter);
-        Out.ilog("Handler","accepter executed");
-
+        Out.ilog("Handler-init","accepter executed");
+        tpe.execute(streamer);
+        Out.ilog("Handler-init","streamer executed");
         init_test(); // FIXME: 12/10/16
     }
 
@@ -75,5 +75,11 @@ public class Handler implements JLCSocketAccepterEx.SocketAcceptListener {
                 Out.elog("Handler-onAccept",e.getMessage());
             }
         }
+    }
+
+    @Override
+    public void run() {
+        init();
+        init_test();
     }
 }

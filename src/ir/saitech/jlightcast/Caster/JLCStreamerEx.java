@@ -25,17 +25,21 @@ import java.util.concurrent.SynchronousQueue;
 // FIXME: 12/10/16 replacing file list with pipe list
 public class JLCStreamerEx implements Runnable {
 
-    private List<PipedReader> prl;
     private SocketChannel selSocket;
     private Selector sel;
     private final int BUFFERSIZE;
     private int connected=0;
     private ClientSocket cls;
-
+    private int[] len;
+    private byte[][] bt;
+    private char[][] ch;
+    private PipeInfo[] pi;
+    private PipedReader[] pr;
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;
     }
+
 
     @Override
     public void run() {
@@ -45,20 +49,21 @@ public class JLCStreamerEx implements Runnable {
             e.printStackTrace();
         }
 
-        int[] len=new int[StationPipes.count()];
-        byte[][] bt = new byte[StationPipes.count()][BUFFERSIZE];
-        char[][] ch = new char[StationPipes.count()][BUFFERSIZE];
-        PipeInfo[] pi = new PipeInfo[StationPipes.count()];
+        _init();
+
+        _init_pipes();
+
         ByteBuffer bb;
+
         while (true){
+
             for (int f = 0; f< StationPipes.count(); f++) {
                 try {
                     // read from all pipes
-                    len[f]=prl.get(f).read(ch[f]);
+                    len[f]=pr[f].read(ch[f]);
                     charArrayToByteArray(ch[f],bt[f],len[f]);
-                    pi[f]
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Out.elog("Streamer",e.getMessage());
                 }
             }
             try {
@@ -67,25 +72,34 @@ public class JLCStreamerEx implements Runnable {
                 Set keys = sel.selectedKeys();
                 Iterator it = keys.iterator();
                 while (it.hasNext()) {
-                    SelectionKey key = (SelectionKey) it.next();
-                    if (key.isWritable()){
-                        cls = (ClientSocket) key.attachment();
-                        if (len[portNum]<=0) continue;
-                        bb = ByteBuffer.wrap(bt[portNum],0,len[portNum]);
-                        selSocket = ((SocketChannel)key.channel());
                         try {
-                            selSocket.write(bb);
-                        }catch (Exception ee){
+                            SelectionKey key = (SelectionKey) it.next();
+                            if (key.isWritable()) {
+                                cls = (ClientSocket) key.attachment();
+                                // Client PipeReader Id
+                                int clpId;
+                                clpId = getPipeIndex(cls.getPipeInfo());
+
+                                // Check if pipe still exists
+                                if (clpId == -1) throw new Exception("Pipe not found !");
+
+                                // Check if there is a problem with pipe
+                                if (len[clpId] <= 0) continue;
+
+                                // Write buffer to client
+                                bb = ByteBuffer.wrap(bt[clpId], 0, len[clpId]);
+                                selSocket = ((SocketChannel) key.channel());
+                                selSocket.write(bb);
+                            }
+                        }catch (Exception ee) {
                             try {
-                                connected --;
-                                Out.println(ee+"\nSocket Close : " +selSocket.getRemoteAddress()+" - "+connected);
+                                connected--;
+                                Out.println(ee + "\nSocket Close : " + selSocket.getRemoteAddress() + " - " + connected);
                                 selSocket.close();
                             } catch (IOException e) {
-                                Out.elog("Streamer","Error When Closing Socket !!!");
+                                Out.elog("Streamer", "Error When Closing Socket !!!");
                             }
                         }
-
-                    }
                 }
                 keys.clear();
                 //System.out.println("Served");
@@ -93,6 +107,28 @@ public class JLCStreamerEx implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void _init(){
+        len = new int[StationPipes.count()];
+
+        bt = new byte[StationPipes.count()][BUFFERSIZE];
+
+        ch = new char[StationPipes.count()][BUFFERSIZE];
+    }
+
+    private void _init_pipes(){
+        pi = StationPipes.getKeys();
+        pr = StationPipes.getValues();
+    }
+
+    private int getPipeIndex(PipeInfo clientPipeInfo){
+        for (int i = 0; i < pi.length; i++) {
+            if (pi[i].equals(clientPipeInfo)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void charArrayToByteArray(char[] ch, byte[] bt, int len){
@@ -122,5 +158,10 @@ public class JLCStreamerEx implements Runnable {
                 connected--;
             }
             Out.println(" - "+connected);
+    }
+
+    public synchronized void updateStations(){
+        _init();
+        _init_pipes();
     }
 }

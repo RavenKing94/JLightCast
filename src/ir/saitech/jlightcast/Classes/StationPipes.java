@@ -30,7 +30,7 @@ public class StationPipes {
         return (PipeInfo[]) stp.keySet().toArray();
     }
 
-    public static synchronized PipeInfo[] getValues() {
-        return (PipeInfo[]) stp.keySet().toArray();
+    public static synchronized PipedReader[] getValues() {
+        return (PipedReader[]) stp.values().toArray();
     }
 }

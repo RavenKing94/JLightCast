@@ -42,4 +42,8 @@ public class ClientSocket {
     public void setStreamBitrate(StreamBitrate streamBitrate) {
         this.pipeInfo.setBitrate(streamBitrate);
     }
+
+    public PipeInfo getPipeInfo(){
+        return this.pipeInfo;
+    }
 }

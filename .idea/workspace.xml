@@ -8,8 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6573a97e-7dd3-4592-80b6-121ea6b08dff" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientSocket.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientSocket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationPipes.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationPipes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" />
     </list>
     <ignored path="JLightCast.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,20 +34,9 @@
       <file leaf-file-name="Station.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-              <folding>
-                <element signature="e#609#610#0" expanded="false" />
-                <element signature="e#636#637#0" expanded="false" />
-                <element signature="e#672#673#0" expanded="false" />
-                <element signature="e#700#701#0" expanded="false" />
-                <element signature="e#736#737#0" expanded="false" />
-                <element signature="e#768#769#0" expanded="false" />
-                <element signature="e#794#795#0" expanded="false" />
-                <element signature="e#819#820#0" expanded="false" />
-                <element signature="e#863#864#0" expanded="false" />
-                <element signature="e#890#891#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="324">
+              <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="411">
-              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,11 +54,11 @@
       <file leaf-file-name="JLCStreamerEx.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="164" column="22" lean-forward="false" selection-start-line="164" selection-start-column="22" selection-end-line="164" selection-end-column="22" />
+            <state relative-caret-position="1833">
+              <caret line="178" column="22" lean-forward="true" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
               <folding>
-                <element signature="e#1137#1138#0" expanded="true" />
-                <element signature="e#1176#1177#0" expanded="true" />
+                <element signature="e#1255#1256#0" expanded="true" />
+                <element signature="e#1294#1295#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,6 +92,16 @@
                 <element signature="e#776#777#0" expanded="true" />
                 <element signature="e#837#838#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StationList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -164,14 +163,14 @@
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientList.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Clients.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/FFMPEGRunner.java" />
-        <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Main.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationList.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/PipeInfo.java" />
-        <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCSocketAccepterEx.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationPipes.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientSocket.java" />
+        <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" />
+        <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" />
       </list>
     </option>
@@ -823,12 +822,12 @@
       <workItem from="1481413064271" duration="3703000" />
       <workItem from="1481493284457" duration="6171000" />
       <workItem from="1481527860899" duration="8550000" />
-      <workItem from="1481563771933" duration="4995000" />
+      <workItem from="1481563771933" duration="8490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70813000" />
+    <option name="totallyTimeSpent" value="74308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -949,8 +948,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1255#1256#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1029,8 +1028,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1255#1256#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1225,33 +1224,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding>
-            <element signature="e#609#610#0" expanded="false" />
-            <element signature="e#636#637#0" expanded="false" />
-            <element signature="e#672#673#0" expanded="false" />
-            <element signature="e#700#701#0" expanded="false" />
-            <element signature="e#736#737#0" expanded="false" />
-            <element signature="e#768#769#0" expanded="false" />
-            <element signature="e#794#795#0" expanded="false" />
-            <element signature="e#819#820#0" expanded="false" />
-            <element signature="e#863#864#0" expanded="false" />
-            <element signature="e#890#891#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/Out.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1274,14 +1246,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationPipes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1294,6 +1258,30 @@
             <element signature="e#776#777#0" expanded="true" />
             <element signature="e#837#838#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1312,11 +1300,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="164" column="22" lean-forward="false" selection-start-line="164" selection-start-column="22" selection-end-line="164" selection-end-column="22" />
+        <state relative-caret-position="1833">
+          <caret line="178" column="22" lean-forward="true" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
           <folding>
-            <element signature="e#1137#1138#0" expanded="true" />
-            <element signature="e#1176#1177#0" expanded="true" />
+            <element signature="e#1255#1256#0" expanded="true" />
+            <element signature="e#1294#1295#0" expanded="true" />
           </folding>
         </state>
       </provider>

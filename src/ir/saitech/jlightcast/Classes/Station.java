@@ -5,6 +5,7 @@ package ir.saitech.jlightcast.Classes;
  * Station information for the controller
  */
 public class Station {
+    private static int count=0;
     private int id=0;
     private String name;
     public enum StreamType {FILE, PLAYLIST, WEB}
@@ -17,6 +18,8 @@ public class Station {
         this.name = name;
         this.sType = stype;
         this.inputAddr = input;
+        count++;
+        id = count;
     }
 
     public String getName() {

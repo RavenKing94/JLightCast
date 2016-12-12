@@ -1,13 +1,11 @@
 package ir.saitech.jlightcast.Controller;
 
-
 import ir.saitech.jlightcast.Caster.JLCSocketAccepterEx;
 import ir.saitech.jlightcast.Caster.JLCStreamerEx;
-import ir.saitech.jlightcast.Classes.ClientSocket;
-import ir.saitech.jlightcast.Classes.Station;
-import ir.saitech.jlightcast.Classes.StationList;
+import ir.saitech.jlightcast.Classes.*;
 import ir.saitech.jlightcast.Utils.Out;
 
+import java.io.PipedReader;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -49,21 +47,27 @@ public class Handler implements JLCSocketAccepterEx.SocketAcceptListener {
      * Add new Station
      */
     public void addStation(String name, Station.StreamType st, Station.StreamBitrate[] sb, String path) {
+        Station station = new Station(name, st, sb, path);
         try {
             synchronized (StationList.class) {
-                StationList.add(new Station(name, st, sb, path));
+                StationList.add(station);
             }
+            addStationPipes(station);
         } catch (Exception e) {
             Out.elog("Handler-addStation",e.getMessage());
         }
     }
 
-    // FIXME: 12/12/16 Okkkaayy Biiiitch, I'm on it -_-
+    private void addStationPipes(Station station){
+        for (Station.StreamBitrate stb:
+                station.getBitrates()) {
+            StationPipes.add(new PipeInfo(station.getId(), stb),new PipedReader(102400));
+        }
+    }
+
     @Override
     public void onAccept(ClientSocket clientSocket) {
         // getting client's Bitrate
-        Station.StreamBitrate sb;
-        sb = clientSocket.getStreamBitrate();
 
     }
 }

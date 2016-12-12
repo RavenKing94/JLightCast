@@ -3,6 +3,7 @@ package ir.saitech.jlightcast.Caster;
 import ir.saitech.jlightcast.Classes.ClientSocket;
 import ir.saitech.jlightcast.Classes.PipeInfo;
 import ir.saitech.jlightcast.Classes.StationPipes;
+import ir.saitech.jlightcast.Utils.CPUUtils;
 import ir.saitech.jlightcast.Utils.Out;
 
 import java.io.*;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Streams files(pipes) to specified ports
@@ -35,6 +37,7 @@ public class JLCStreamerEx implements Runnable {
     private char[][] ch;
     private PipeInfo[] pi;
     private PipedReader[] pr;
+    private boolean ready = false;
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;
@@ -53,6 +56,8 @@ public class JLCStreamerEx implements Runnable {
 
         _init_pipes();
 
+        ready = true;
+
         ByteBuffer bb;
 
         while (true){
@@ -67,8 +72,11 @@ public class JLCStreamerEx implements Runnable {
                 }
             }
             try {
+                ready = false;
+
                 int cnt = sel.select(100);
                 if (cnt==0) continue;
+
                 Set keys = sel.selectedKeys();
                 Iterator it = keys.iterator();
                 while (it.hasNext()) {
@@ -102,9 +110,15 @@ public class JLCStreamerEx implements Runnable {
                         }
                 }
                 keys.clear();
+                ready = true;
+                try {
+                    TimeUnit.MILLISECONDS.sleep(5);
+                } catch (InterruptedException e) {
+                    Out.elog("Streamer",e.getMessage());
+                }
                 //System.out.println("Served");
             } catch (IOException e) {
-                e.printStackTrace();
+                Out.elog("Streamer",e.getMessage());
             }
         }
     }
@@ -154,7 +168,7 @@ public class JLCStreamerEx implements Runnable {
                         + clientSocket.getSocketChannel().getRemoteAddress()
                         + ":"+clientSocket.getStationId());
             } catch (IOException e) {
-                e.printStackTrace();
+                Out.elog("Streamer-ch2bt",e.getMessage());
                 connected--;
             }
             Out.println(" - "+connected);

@@ -8,6 +8,7 @@ import ir.saitech.jlightcast.Utils.Out;
 import java.io.PipedReader;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by blk-arch on 12/9/16.
@@ -67,7 +68,12 @@ public class Handler implements JLCSocketAccepterEx.SocketAcceptListener {
 
     @Override
     public void onAccept(ClientSocket clientSocket) {
-        // getting client's Bitrate
-
+        while (!streamer.ready){
+            try {
+                TimeUnit.MICROSECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                Out.elog("Handler-onAccept",e.getMessage());
+            }
+        }
     }
 }

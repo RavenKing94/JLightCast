@@ -37,7 +37,7 @@ public class JLCStreamerEx implements Runnable {
     private char[][] ch;
     private PipeInfo[] pi;
     private PipedReader[] pr;
-    private boolean ready = false;
+    public boolean ready = false;
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;

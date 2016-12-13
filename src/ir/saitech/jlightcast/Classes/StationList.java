@@ -1,18 +1,25 @@
 package ir.saitech.jlightcast.Classes;
 
+import ir.saitech.jlightcast.Utils.Out;
+
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by blk-arch on 12/9/16.
  * Global Static List of Running Stations
  */
 public class StationList {
-    private static HashMap<String,Station> list = new HashMap<>(100);
+    private static ConcurrentHashMap<String,Station> list = new ConcurrentHashMap<>(100);
 
     public static void add(Station st) throws Exception {
-        if (!list.containsKey(st.getName()))
-            list.put(st.getName(),st);
-        else throw new Exception("Station already exists !");
+        if (!list.containsKey(st.getName())) // FIXME: 12/13/16
+            list.putIfAbsent(st.getName(),st);
+        else {
+            Out.println(list.get(String.valueOf(st.getId())).getName());
+            throw new Exception("Station already exists !");
+        }
+        Out.println("Station added");
     }
 
     public static void remove(Station st) throws Exception {
@@ -34,7 +41,6 @@ public class StationList {
     }
 
     public static Station findById(int id){
-
         for (Station s: list.values()) {
             if (s.getId() == id){
                 return s;

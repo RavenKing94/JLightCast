@@ -20,6 +20,7 @@ public class JLCWebRadioGrabber implements Runnable {
     public JLCWebRadioGrabber(String mediaUrl, PipedReader pipedReader, int bufferSize){
         url = mediaUrl;
         try {
+            if (pipedReader == null) Out.println("pipedReader is NULL!!!");
             pr.connect(pipedReader);
         } catch (IOException e) {
             Out.elog("WebGrabber",e.getMessage());

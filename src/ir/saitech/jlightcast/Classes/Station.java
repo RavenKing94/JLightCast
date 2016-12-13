@@ -18,6 +18,7 @@ public class Station {
         this.name = name;
         this.sType = stype;
         this.inputAddr = input;
+        sBtr = bitrates;
         count++;
         id = count;
     }

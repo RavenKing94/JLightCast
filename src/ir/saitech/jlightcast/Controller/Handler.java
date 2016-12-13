@@ -2,10 +2,12 @@ package ir.saitech.jlightcast.Controller;
 
 import ir.saitech.jlightcast.Caster.JLCSocketAccepterEx;
 import ir.saitech.jlightcast.Caster.JLCStreamerEx;
+import ir.saitech.jlightcast.Caster.JLCWebRadioGrabber;
 import ir.saitech.jlightcast.Classes.*;
 import ir.saitech.jlightcast.Utils.Out;
 
 import java.io.PipedReader;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -28,43 +30,68 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
     public void init(){
         Out.ilog("Handler","init() started");
         accepter = new JLCSocketAccepterEx(port);
-        accepter.setServerSocketListener(this);
         streamer = new JLCStreamerEx(2048);
         tpe.execute(accepter);
+        accepter.setServerSocketListener(this);
         Out.ilog("Handler-init","accepter executed");
         tpe.execute(streamer);
         Out.ilog("Handler-init","streamer executed");
-        init_test(); // FIXME: 12/10/16
+        init_test();
     }
 
 
     public void init_test() {
-        Station.StreamBitrate[] sbr = {Station.StreamBitrate.Q48,
-                Station.StreamBitrate.Q96};
-        addStation("The Trip", Station.StreamType.WEB, sbr, "http://ice1.somafm.com/thetrip-128-mp3");
+        Station.StreamBitrate[] sbr = new Station.StreamBitrate[1];
+        sbr[0] = Station.StreamBitrate.Q128;
+
+        PipedReader[] pr;
+        Station st = addStation(
+                "The Trip",
+                Station.StreamType.WEB,
+                sbr,
+                "http://ice1.somafm.com/thetrip-128-mp3"
+        );
+
+        PipedReader ppr = StationPipes.get(st.getId(),sbr[0]);
+        //Out.println(ppr.toString());
+        if (ppr == null) Out.println("ppr is NULL :|");
+        tpe.execute(new JLCWebRadioGrabber("http://ice1.somafm.com/thetrip-128-mp3",
+                ppr,
+                4096));
         streamer.updateStations();
     }
 
     /**
      * Add new Station
      */
-    public void addStation(String name, Station.StreamType st, Station.StreamBitrate[] sb, String path) {
+    public Station addStation(String name, Station.StreamType st, Station.StreamBitrate[] sb, String path) {
         Station station = new Station(name, st, sb, path);
         try {
-            synchronized (StationList.class) {
-                StationList.add(station);
-            }
+            Out.println("StationList.add started");
+            StationList.add(station);
+            Out.println("StationList.add finished");
             addStationPipes(station);
+            return station;
         } catch (Exception e) {
+            e.printStackTrace();
             Out.elog("Handler-addStation",e.getMessage());
         }
+        return null;
     }
 
-    private void addStationPipes(Station station){
-        for (Station.StreamBitrate stb:
-                station.getBitrates()) {
-            StationPipes.add(new PipeInfo(station.getId(), stb),new PipedReader(102400));
+    private PipedReader[] addStationPipes(Station station){
+        Station.StreamBitrate[] sbr = station.getBitrates();
+        if (sbr==null) Out.println("sbr is NULL !!!!!");
+        PipedReader[] pr = new PipedReader[sbr.length];
+        int i=0;
+        for (Station.StreamBitrate stb:sbr) {
+            pr[i] = new PipedReader(102400);
+            StationPipes.add(new PipeInfo(station.getId(), stb),pr[i]);
+            Out.println("addStationPipes - "+station.getId()+" "+stb.toString()+" added");
+            i++;
         }
+        Out.println("addStationPipes finished");
+        return pr;
     }
 
     @Override

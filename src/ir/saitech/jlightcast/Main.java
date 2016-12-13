@@ -64,6 +64,6 @@ public class Main {
         Out.ilog("Main","port : "+port);
         Out.ilog("Main","configAddr : "+configAddr);
 
-        new Handler(Integer.valueOf(port));
+        new Thread(new Handler(Integer.valueOf(port))).start();
     }
 }

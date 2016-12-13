@@ -16,6 +16,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by blk-arch on 9/10/16.
@@ -58,13 +59,16 @@ public class JLCSocketAccepterEx implements Runnable {
             while (true) {
                 try {
                     socket = svSock.accept();
+                    Out.ilog("Accepter","after accept()");
                     // cls = makeClientSocket(socket);
                     socket.configureBlocking(true);
-                    socket.socket().setKeepAlive(true);
+                    //socket.socket().setKeepAlive(true);
                     cls = makeClientSocket(socket);
                     Out.println("Accepted : " + socket.getRemoteAddress() + " on " + cls.getStationId());
-                    socket.configureBlocking(false);
+                    //socket.configureBlocking(false);
+                    Out.ilog("Accepter","before onAccept");
                     sal.onAccept(cls);
+                    Out.ilog("Accepter","after onAccept");
                 }catch (Exception e) {
                     Out.elog("SocketAccepter", e.getMessage());
                 }

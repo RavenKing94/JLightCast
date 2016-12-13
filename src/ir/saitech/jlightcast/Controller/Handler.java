@@ -3,6 +3,7 @@ package ir.saitech.jlightcast.Controller;
 import ir.saitech.jlightcast.Caster.JLCSocketAccepterEx;
 import ir.saitech.jlightcast.Caster.JLCStreamerEx;
 import ir.saitech.jlightcast.Caster.JLCWebRadioGrabber;
+import ir.saitech.jlightcast.Caster.SyncSocket;
 import ir.saitech.jlightcast.Classes.*;
 import ir.saitech.jlightcast.Utils.Out;
 
@@ -74,6 +75,7 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
             StationList.add(station);
             Out.println("StationList.add finished");
             addStationPipes(station);
+            new Thread(new SyncSocket(9000,sb,1,name.toLowerCase())).start();
             return station;
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,14 +102,20 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
 
     @Override
     public void onAccept(ClientSocket clientSocket) {
-        while (!streamer.ready){
+        /*while (!streamer.ready){
             try {
                 TimeUnit.MICROSECONDS.sleep(100);
             } catch (InterruptedException e) {
                 Out.elog("Handler-onAccept",e.getMessage());
             }
-        }
-        streamer.addClient(clientSocket);
+        }*/
+        Out.println("before addClient");
+        while (!streamer.clientQueue.add(clientSocket))
+            try {
+                TimeUnit.MILLISECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                Out.elog("onAccept","Shit happened !");
+            }
         Out.ilog("onAccept","Client Added");
     }
 

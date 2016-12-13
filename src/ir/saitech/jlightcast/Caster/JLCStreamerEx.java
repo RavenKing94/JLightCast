@@ -38,6 +38,7 @@ public class JLCStreamerEx implements Runnable {
     private PipeInfo[] pi;
     private PipedReader[] pr;
     public boolean ready = false;
+    public SynchronousQueue clientQueue = new SynchronousQueue(true);
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;
@@ -87,6 +88,7 @@ public class JLCStreamerEx implements Runnable {
                             SelectionKey key = (SelectionKey) it.next();
                             if (key.isWritable()) {
                                 cls = (ClientSocket) key.attachment();
+
                                 // Client PipeReader Id
                                 int clpId;
                                 clpId = getPipeIndex(cls.getPipeInfo());
@@ -154,13 +156,17 @@ public class JLCStreamerEx implements Runnable {
         }
     }
     
-    public synchronized void addClient(ClientSocket clientSocket) {
+    public void addClient(ClientSocket clientSocket) {
         ready = false;
+        Out.println("addClient start");
             try {
+                Out.println("addClient before register");
                 clientSocket
                         .getSocketChannel()
                         .register(sel,SelectionKey.OP_WRITE)
                         .attach(clientSocket);
+                Out.println("addClient after register");
+                Out.ilog("Streamer-addClient","Client added!");
                 connected++;
             } catch (IOException e) {
                 Out.elog("Streamer-addClient", e.getMessage());

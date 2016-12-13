@@ -14,8 +14,8 @@ public class StationList {
 
     public static void add(Station st) throws Exception {
         Out.println("List size is "+list.size());
-        if (!list.containsKey(st.getName())) {// FIXME: 12/13/16
-            list.putIfAbsent(st.getName(), st);
+        if (!list.containsKey(st.getName().toLowerCase())) {// FIXME: 12/13/16
+            list.putIfAbsent(st.getName().toLowerCase(), st);
             Out.println("List size is now " + list.size());
         }
         else {
@@ -26,26 +26,26 @@ public class StationList {
     }
 
     public static void remove(Station st) throws Exception {
-        if (list.containsKey(st.getName())){
-            list.remove(st.getName());
+        if (list.containsKey(st.getName().toLowerCase())){
+            list.remove(st.getName().toLowerCase());
         } else throw new Exception("Station does not exist !");
     }
 
     public static void remove(String name) throws Exception {
-        if (list.containsKey(name)){
-            list.remove(name);
+        if (list.containsKey(name.toLowerCase())){
+            list.remove(name.toLowerCase());
         } else throw new Exception("Station does not exist !");
     }
 
     public static Station findByName(String name){
-        if (list.containsKey(name)){
-            return list.get(name);
+        if (list.containsKey(name.toLowerCase())){
+            return list.get(name.toLowerCase());
         } else return null;
     }
 
     public static Station findById(int id){
         for (Station s: list.values()) {
-            if (s.getId() == id){
+            if ( s.getId() == id ){
                 return s;
             }
         }
@@ -53,6 +53,6 @@ public class StationList {
     }
 
     public static boolean exists(String name){
-        return list.containsKey(name);
+        return list.containsKey(name.toLowerCase());
     }
 }

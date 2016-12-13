@@ -31,12 +31,17 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
         Out.ilog("Handler","init() started");
         accepter = new JLCSocketAccepterEx(port);
         streamer = new JLCStreamerEx(2048);
-        tpe.execute(accepter);
         accepter.setServerSocketListener(this);
+        tpe.execute(accepter);
         Out.ilog("Handler-init","accepter executed");
+        //init_test();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         tpe.execute(streamer);
         Out.ilog("Handler-init","streamer executed");
-        init_test();
     }
 
 
@@ -46,19 +51,17 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
 
         PipedReader[] pr;
         Station st = addStation(
-                "The Trip",
+                "TheTrip",
                 Station.StreamType.WEB,
                 sbr,
                 "http://ice1.somafm.com/thetrip-128-mp3"
         );
-
-        PipedReader ppr = StationPipes.get(st.getId(),sbr[0]);
+        PipedReader ppr = StationPipes.get(st.getId(), sbr[0]);
         //Out.println(ppr.toString());
         if (ppr == null) Out.println("ppr is NULL :|");
         tpe.execute(new JLCWebRadioGrabber("http://ice1.somafm.com/thetrip-128-mp3",
                 ppr,
                 4096));
-        streamer.updateStations();
     }
 
     /**
@@ -91,6 +94,7 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
             i++;
         }
         Out.println("addStationPipes finished");
+        Out.println("StationPipes size is "+StationPipes.count());
         return pr;
     }
 
@@ -103,10 +107,13 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
                 Out.elog("Handler-onAccept",e.getMessage());
             }
         }
+        streamer.addClient(clientSocket);
+        Out.ilog("onAccept","Client Added");
     }
 
     @Override
     public void run() {
+        Out.ilog("Hanlder","run !!!");
         init();
         init_test();
         while (true){

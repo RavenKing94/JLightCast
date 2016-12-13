@@ -60,4 +60,23 @@ public class Station {
             return StreamBitrate.Q320;
         } else return null;
     }
+
+    public static String sbToString(StreamBitrate sb){
+        if (sb == StreamBitrate.Q48){
+            return "48k";
+        }
+        if (sb == StreamBitrate.Q96){
+            return "96k";
+        }
+        if (sb == StreamBitrate.Q128){
+            return "128k";
+        }
+        if (sb == StreamBitrate.Q256){
+            return "256k";
+        }
+        if (sb == StreamBitrate.Q320){
+            return "320k";
+        }
+        return null;
+    }
 }

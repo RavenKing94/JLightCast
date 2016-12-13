@@ -13,10 +13,13 @@ public class StationList {
     private static ConcurrentHashMap<String,Station> list = new ConcurrentHashMap<>(100);
 
     public static void add(Station st) throws Exception {
-        if (!list.containsKey(st.getName())) // FIXME: 12/13/16
-            list.putIfAbsent(st.getName(),st);
+        Out.println("List size is "+list.size());
+        if (!list.containsKey(st.getName())) {// FIXME: 12/13/16
+            list.putIfAbsent(st.getName(), st);
+            Out.println("List size is now " + list.size());
+        }
         else {
-            Out.println(list.get(String.valueOf(st.getId())).getName());
+            //Out.println(list.get(String.valueOf(st.getId())).getName());
             throw new Exception("Station already exists !");
         }
         Out.println("Station added");

@@ -52,10 +52,11 @@ public class JLCStreamerEx implements Runnable {
             e.printStackTrace();
         }
 
+        Out.ilog("Streamer","begin init");
         _init();
-
+        Out.ilog("Streamer","end init");
         _init_pipes();
-
+        Out.ilog("Streamer","end init_pipes");
         ready = true;
 
         ByteBuffer bb;
@@ -65,10 +66,12 @@ public class JLCStreamerEx implements Runnable {
             for (int f = 0; f< StationPipes.count(); f++) {
                 try {
                     // read from all pipes
+                    if (!pr[f].ready()) continue;
                     len[f]=pr[f].read(ch[f]);
                     charArrayToByteArray(ch[f],bt[f],len[f]);
-                } catch (IOException e) {
-                    Out.elog("Streamer",e.getMessage());
+                    //Out.ilog("Streamer1","read");
+                } catch (Exception e) {
+                    //Out.elog("Streamer1",e.getMessage());
                 }
             }
             try {

@@ -74,7 +74,9 @@ public class JLCSocketAccepterEx implements Runnable {
 
     private ClientSocket makeClientSocket(SocketChannel sc){
         try {
-            List<String> sl = parser.parseGET(readClientHeader(sc));
+            String ch = readClientHeader(sc);
+            Out.println(ch);
+            List<String> sl = parser.parseGET(ch);
             Thread.sleep(5);
             // Check Station Name
             if (StationList.exists(sl.get(0))){
@@ -90,20 +92,28 @@ public class JLCSocketAccepterEx implements Runnable {
                     }
                     // Make ClientSocket object using StationId & bitrate if given bitrate and StationId are correct
                     if (pipeExists(station.getId(), bitrate)) {
+                        Out.ilog("Accepter-makeClient","pipeExists (Ok)");
                         sc.write(ByteBuffer.wrap(HTTPResponse.getNewOk().getBytes()));
+                        Out.ilog("Accepter-makeClient","response written (Ok)");
                         return new ClientSocket(sc, new PipeInfo(station.getId(), bitrate));
                     }
                     else {
                         // No bitrate (404)
+                        Out.ilog("Accepter-makeClient","404 no bitrate !");
                         sc.write(ByteBuffer.wrap(HTTPResponse.getNewFail().getBytes()));
+                        sc.close();
                     }
                 } else {
                     // No bitrate (404)
+                    Out.ilog("Accepter-makeClient","404 no bitrate !");
                     sc.write(ByteBuffer.wrap(HTTPResponse.getNewFail().getBytes()));
+                    sc.close();
                 }
             } else {
                 // No Station (404)
+                Out.ilog("Accepter-makeClient","404 no station !");
                 sc.write(ByteBuffer.wrap(HTTPResponse.getNewFail().getBytes()));
+                sc.close();
             }
         } catch (IOException e) {
             Out.elog("makeClientSocket", e.getMessage());
@@ -124,6 +134,13 @@ public class JLCSocketAccepterEx implements Runnable {
         } catch (IOException e) {
             Out.elog("readClientHeader",e.getMessage());
         }
+        Out.ilog("Accepter-readCH","header read len : "+len);
+        /*try {
+            sc.configureBlocking(true);
+            Out.ilog("Accepter-readCH","mode changed to blocking");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         return new String(bt,0,len);
     }
 

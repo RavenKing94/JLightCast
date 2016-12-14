@@ -12,10 +12,8 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +22,6 @@ import java.util.concurrent.TimeUnit;
  * Streams files(pipes) to specified ports
  * Created by blk-arch on 9/13/16.
  */
-// FIXME: 12/10/16 replacing file list with pipe list
 public class JLCStreamerEx implements Runnable {
 
     private SocketChannel selSocket;
@@ -38,7 +35,7 @@ public class JLCStreamerEx implements Runnable {
     private PipeInfo[] pi;
     private PipedReader[] pr;
     public boolean ready = false;
-    public SynchronousQueue clientQueue = new SynchronousQueue(true);
+    public ArrayBlockingQueue<ClientSocket> clientQueue = new ArrayBlockingQueue<ClientSocket>(10,true);
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;
@@ -53,17 +50,16 @@ public class JLCStreamerEx implements Runnable {
             e.printStackTrace();
         }
 
-        Out.ilog("Streamer","begin init");
-        _init();
-        Out.ilog("Streamer","end init");
-        _init_pipes();
-        Out.ilog("Streamer","end init_pipes");
+        updateStations();
         ready = true;
 
         ByteBuffer bb;
 
         while (true){
-
+            if (clientQueue.peek()!=null) {
+                syncClients();
+            }
+            Out.println(" - - - 1");
             for (int f = 0; f< StationPipes.count(); f++) {
                 try {
                     // read from all pipes
@@ -75,11 +71,13 @@ public class JLCStreamerEx implements Runnable {
                     //Out.elog("Streamer1",e.getMessage());
                 }
             }
+            Out.println(" - - - 2");
             try {
                 ready = false;
 
                 int cnt = sel.select(100);
                 if (cnt==0) continue;
+                Out.println(" - - - 3");
 
                 Set keys = sel.selectedKeys();
                 Iterator it = keys.iterator();
@@ -116,6 +114,8 @@ public class JLCStreamerEx implements Runnable {
                 }
                 keys.clear();
                 ready = true;
+                Out.println(" - - - target reached !");
+                Out.println(" - - - Queue size in target line "+clientQueue.size());
                 try {
                     TimeUnit.MILLISECONDS.sleep(5);
                 } catch (InterruptedException e) {
@@ -156,38 +156,47 @@ public class JLCStreamerEx implements Runnable {
         }
     }
     
-    public void addClient(ClientSocket clientSocket) {
+    public void syncClients() {
         ready = false;
-        Out.println("addClient start");
+        Out.println(" - - - syncClient start");
+        List<ClientSocket> clientSocket = new ArrayList<>();
+        int n = clientQueue.drainTo(clientSocket);
+        Out.println(" - - - Queue size "+n);
             try {
-                Out.println("addClient before register");
-                clientSocket
-                        .getSocketChannel()
-                        .register(sel,SelectionKey.OP_WRITE)
-                        .attach(clientSocket);
-                Out.println("addClient after register");
-                Out.ilog("Streamer-addClient","Client added!");
-                connected++;
+                for (int i = 0; i < n; i++) {
+                    Out.println("syncClients before register");
+                    clientSocket.get(i)
+                            .getSocketChannel()
+                            .register(sel,SelectionKey.OP_WRITE)
+                            .attach(clientSocket);
+                    Out.println("syncClients after register");
+                    Out.ilog("Streamer-addClient","Client added!");
+                    connected++;
+                    try {
+                        Out.print("Socket Opened "
+                                + clientSocket.get(i).getSocketChannel().getRemoteAddress()
+                                + ":"+clientSocket.get(i).getStationId());
+                    } catch (IOException e) {
+                        Out.elog("Streamer-ch2bt",e.getMessage());
+                        connected--;
+                    }
+                    Out.println(" - - - "+connected);
+                }
+                clientQueue.clear();
             } catch (IOException e) {
                 Out.elog("Streamer-addClient", e.getMessage());
                 connected--;
                 ready = true;
                 return;
             }
-            try {
-                Out.print("Socket Opened "
-                        + clientSocket.getSocketChannel().getRemoteAddress()
-                        + ":"+clientSocket.getStationId());
-            } catch (IOException e) {
-                Out.elog("Streamer-ch2bt",e.getMessage());
-                connected--;
-            }
-            Out.println(" - "+connected);
         ready = true;
     }
 
     public synchronized void updateStations(){
+        Out.ilog("Streamer","begin init");
         _init();
+        Out.ilog("Streamer","end init");
         _init_pipes();
+        Out.ilog("Streamer","end init_pipes");
     }
 }

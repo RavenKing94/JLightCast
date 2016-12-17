@@ -7,9 +7,10 @@ import java.util.concurrent.SynchronousQueue;
  *
  */
 public class ClientQueue {
-    private SynchronousQueue<ClientSocket> clq = new SynchronousQueue<>(false);
+    private static SynchronousQueue<ClientSocket> clq = new SynchronousQueue<>(false);
+    private static boolean lock=false;
 
-    private void add(ClientSocket cls){
-        
+    private static void add(ClientSocket cls){
+
     }
 }

@@ -35,7 +35,7 @@ public class JLCStreamerEx implements Runnable {
     private PipeInfo[] pi;
     private PipedReader[] pr;
     public boolean ready = false;
-    public ArrayBlockingQueue<ClientSocket> clientQueue = new ArrayBlockingQueue<ClientSocket>(10,true);
+    public ClientSocket[] clientArray;
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;

@@ -1,8 +1,5 @@
 package ir.saitech.jlightcast.Classes;
 
-import sun.awt.Mutex;
-
-import java.util.Objects;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.locks.Lock;
@@ -41,5 +38,13 @@ public class ClientQueue {
         }
         lock.unlock();
         return cl;
+    }
+
+    public static boolean isEmpty(){
+        boolean empty=true;
+        lock.lock();
+        empty = queue.isEmpty();
+        lock.unlock();
+        return empty;
     }
 }

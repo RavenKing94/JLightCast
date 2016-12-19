@@ -111,8 +111,8 @@ public class Handler implements Runnable,JLCSocketAccepterEx.SocketAcceptListene
         }*/
         Out.println("before addClient");
         try {
-            boolean a = streamer.clientQueue.add(clientSocket);
-            Out.println(String.valueOf(a));
+            ClientQueue.add(clientSocket);
+            //Out.println(" - - - Client added from Handler");
         } catch (Exception e) {
             e.printStackTrace();
         }

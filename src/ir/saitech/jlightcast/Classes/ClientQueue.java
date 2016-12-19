@@ -32,6 +32,7 @@ public class ClientQueue {
         ClientSocket[] cl;
         Object[] ol;
         ol = queue.toArray();
+        queue.clear();
         cl = new ClientSocket[ol.length];
         for (int i=0;i<ol.length;i++){
             cl[i] = (ClientSocket)ol[i];

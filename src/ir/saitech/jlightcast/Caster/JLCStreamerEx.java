@@ -1,5 +1,6 @@
 package ir.saitech.jlightcast.Caster;
 
+import ir.saitech.jlightcast.Classes.ClientQueue;
 import ir.saitech.jlightcast.Classes.ClientSocket;
 import ir.saitech.jlightcast.Classes.PipeInfo;
 import ir.saitech.jlightcast.Classes.StationPipes;
@@ -34,8 +35,6 @@ public class JLCStreamerEx implements Runnable {
     private char[][] ch;
     private PipeInfo[] pi;
     private PipedReader[] pr;
-    public boolean ready = false;
-    public ClientSocket[] clientArray;
 
     public JLCStreamerEx(int bufferSize){
         BUFFERSIZE = bufferSize;
@@ -51,15 +50,14 @@ public class JLCStreamerEx implements Runnable {
         }
 
         updateStations();
-        ready = true;
 
         ByteBuffer bb;
 
         while (true){
-            if (clientQueue.peek()!=null) {
+            if (!ClientQueue.isEmpty()) {
                 syncClients();
             }
-            Out.println(" - - - 1");
+            //Out.println(" - - - 1");
             for (int f = 0; f< StationPipes.count(); f++) {
                 try {
                     // read from all pipes
@@ -71,13 +69,11 @@ public class JLCStreamerEx implements Runnable {
                     //Out.elog("Streamer1",e.getMessage());
                 }
             }
-            Out.println(" - - - 2");
+            //Out.println(" - - - 2");
             try {
-                ready = false;
-
                 int cnt = sel.select(100);
                 if (cnt==0) continue;
-                Out.println(" - - - 3");
+                //Out.println(" - - - 3");
 
                 Set keys = sel.selectedKeys();
                 Iterator it = keys.iterator();
@@ -105,7 +101,7 @@ public class JLCStreamerEx implements Runnable {
                         }catch (Exception ee) {
                             try {
                                 connected--;
-                                Out.println(ee + "\nSocket Close : " + selSocket.getRemoteAddress() + " - " + connected);
+                                //Out.println(ee + "\nSocket Close : " + selSocket.getRemoteAddress() + " - " + connected);
                                 selSocket.close();
                             } catch (IOException e) {
                                 Out.elog("Streamer", "Error When Closing Socket !!!");
@@ -113,9 +109,6 @@ public class JLCStreamerEx implements Runnable {
                         }
                 }
                 keys.clear();
-                ready = true;
-                Out.println(" - - - target reached !");
-                Out.println(" - - - Queue size in target line "+clientQueue.size());
                 try {
                     TimeUnit.MILLISECONDS.sleep(5);
                 } catch (InterruptedException e) {
@@ -157,39 +150,36 @@ public class JLCStreamerEx implements Runnable {
     }
     
     public void syncClients() {
-        ready = false;
         Out.println(" - - - syncClient start");
-        List<ClientSocket> clientSocket = new ArrayList<>();
-        int n = clientQueue.drainTo(clientSocket);
-        Out.println(" - - - Queue size "+n);
-            try {
-                for (int i = 0; i < n; i++) {
-                    Out.println("syncClients before register");
-                    clientSocket.get(i)
-                            .getSocketChannel()
-                            .register(sel,SelectionKey.OP_WRITE)
-                            .attach(clientSocket);
-                    Out.println("syncClients after register");
-                    Out.ilog("Streamer-addClient","Client added!");
-                    connected++;
-                    try {
-                        Out.print("Socket Opened "
-                                + clientSocket.get(i).getSocketChannel().getRemoteAddress()
-                                + ":"+clientSocket.get(i).getStationId());
-                    } catch (IOException e) {
-                        Out.elog("Streamer-ch2bt",e.getMessage());
-                        connected--;
-                    }
-                    Out.println(" - - - "+connected);
+        ClientSocket[] clientArray = ClientQueue.getAll();
+        Out.println(" - - - clientArray size " + clientArray.length);
+        try {
+            for (int i = 0; i < clientArray.length; i++) {
+                Out.println("syncClients before register");
+                clientArray[i].getSocketChannel().configureBlocking(false);
+                clientArray[i]
+                        .getSocketChannel()
+                        .register(sel,SelectionKey.OP_WRITE)
+                        .attach(clientArray[i]);
+                Out.println("syncClients after register");
+                Out.ilog("Streamer-addClient","Client added!");
+                connected++;
+                try {
+                    Out.print("Socket Opened "
+                            + clientArray[i].getSocketChannel().getRemoteAddress()
+                            + ":"+clientArray[i].getStationId());
+                } catch (IOException e) {
+                    Out.elog("Streamer-ch2bt",e.getMessage());
+                    connected--;
                 }
-                clientQueue.clear();
-            } catch (IOException e) {
-                Out.elog("Streamer-addClient", e.getMessage());
-                connected--;
-                ready = true;
-                return;
+                Out.println(" - - - "+connected);
+                clientArray=null;
             }
-        ready = true;
+        } catch (IOException e) {
+            Out.elog("Streamer-addClient", e.getMessage());
+            connected--;
+            return;
+        }
     }
 
     public synchronized void updateStations(){

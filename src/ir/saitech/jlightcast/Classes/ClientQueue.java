@@ -14,13 +14,13 @@ public class ClientQueue {
     private static Lock lock = new ReentrantLock(true);
 
     public static void add(ClientSocket cls){
-        lock.lock();
+        lock.tryLock();
         queue.add(cls);
         lock.unlock();
     }
 
     public static ClientSocket get(){
-        lock.lock();
+        lock.tryLock();
         ClientSocket c;
         c = queue.poll();
         lock.unlock();
@@ -28,7 +28,7 @@ public class ClientQueue {
     }
 
     public static ClientSocket[] getAll(){
-        lock.lock();
+        lock.tryLock();
         ClientSocket[] cl;
         Object[] ol;
         ol = queue.toArray();
@@ -42,8 +42,8 @@ public class ClientQueue {
     }
 
     public static boolean isEmpty(){
-        boolean empty=true;
-        lock.lock();
+        lock.tryLock();
+        boolean empty= true;
         empty = queue.isEmpty();
         lock.unlock();
         return empty;

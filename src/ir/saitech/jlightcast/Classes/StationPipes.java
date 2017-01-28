@@ -3,9 +3,9 @@ package ir.saitech.jlightcast.Classes;
 import ir.saitech.jlightcast.Utils.Out;
 
 import java.io.PipedReader;
-import java.util.HashMap;
-import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by blk-arch on 12/10/16.
@@ -16,30 +16,42 @@ public class StationPipes {
 
     private static ConcurrentHashMap<PipeInfo,PipedReader> stp = new ConcurrentHashMap<>(500);
 
-    public static synchronized void add(PipeInfo pi, PipedReader pr){
+    private static Lock lock = new ReentrantLock(true);
+
+    public static void add(PipeInfo pi, PipedReader pr) {
+        lock.tryLock();
         stp.put(pi,pr);
+        lock.unlock();
     }
 
-    public static synchronized void remove(PipeInfo pi){
+    public static void remove(PipeInfo pi) {
+        lock.tryLock();
         stp.remove(pi);
+        lock.unlock();
     }
 
-    public static PipedReader get(PipeInfo pi){
+    public static PipedReader get(PipeInfo pi) {
+        lock.tryLock();
         if (!stp.containsKey(pi)) Out.println("key does not exist !");
-        return stp.get(pi);
+        PipedReader pr = stp.get(pi);
+        lock.unlock();
+        return pr;
     }
 
-    public static synchronized PipedReader get(int sId, Station.StreamBitrate sbr){
+    public static PipedReader get(int sId, Station.StreamBitrate sbr) {
+        lock.tryLock();
         pipeInfo.setStationId(sId);
         pipeInfo.setBitrate(sbr);
-        return stp.get(pipeInfo);
+        PipedReader pr = stp.get(pipeInfo);
+        lock.unlock();
+        return pr;
     }
 
-    public static synchronized int count(){
+    public static int count(){
         return stp.size();
     }
 
-    public static synchronized PipeInfo[] getKeys() {
+    public static PipeInfo[] getKeys() {
         PipeInfo[] pi;
         Object[] obj;
         obj = stp.keySet().toArray();
@@ -50,7 +62,8 @@ public class StationPipes {
         return pi;
     }
 
-    public static synchronized PipedReader[] getValues() {
+    public static PipedReader[] getValues() {
+
         PipedReader[] pr;
         Object[] obj;
         obj = stp.values().toArray();

@@ -7,44 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6573a97e-7dd3-4592-80b6-121ea6b08dff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/commons-cli-1.3.1.jar" afterPath="$PROJECT_DIR$/lib/commons-cli-1.3.1.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/commons-lang3-3.5.jar" afterPath="$PROJECT_DIR$/lib/commons-lang3-3.5.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JLightCast_jar/JLightCast.jar" afterPath="$PROJECT_DIR$/out/artifacts/JLightCast_jar/JLightCast.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/JLightCast_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/JLightCast_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/description.html" afterPath="$PROJECT_DIR$/.idea/description.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/project-template.xml" afterPath="$PROJECT_DIR$/.idea/project-template.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JLightCast.iml" afterPath="$PROJECT_DIR$/JLightCast.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.txt" afterPath="$PROJECT_DIR$/README.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JLightCast_jar/log.txt" afterPath="$PROJECT_DIR$/out/artifacts/JLightCast_jar/log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/JLightCast/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/JLightCast/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCSocketAccepterEx.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCSocketAccepterEx.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCStreamerEx.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCWebRadioGrabber.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/JLCWebRadioGrabber.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/SyncSocket.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Caster/SyncSocket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientQueue.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientQueue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientSocket.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientSocket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Credentals.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Credentals.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/PipeInfo.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/PipeInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/Station.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationList.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationPipes.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationPipes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Controller/Handler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Main.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/CPUUtils.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/CPUUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/DefaultHTTPHeader.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/DefaultHTTPHeader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/FFMPEGRunner.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/FFMPEGRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/HTTPGETParser.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/HTTPGETParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/HTTPResponse.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/HTTPResponse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/JLCSyncedList.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/JLCSyncedList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/Out.java" afterPath="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/Out.java" />
     </list>
     <ignored path="JLightCast.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -174,9 +137,12 @@
       <file leaf-file-name="JLCSyncedList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/JLCSyncedList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="1365">
+              <caret line="65" column="22" lean-forward="false" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1571#1572#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -232,6 +198,7 @@
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationList.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/ClientQueue.java" />
         <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Classes/StationPipes.java" />
+        <option value="$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/JLCSyncedList.java" />
       </list>
     </option>
   </component>
@@ -265,6 +232,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="JLightCast">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -413,22 +395,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="JLightCast">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -896,11 +863,12 @@
       <workItem from="1485385397770" duration="6000" />
       <workItem from="1485427379642" duration="714000" />
       <workItem from="1485429503884" duration="1773000" />
+      <workItem from="1485611562902" duration="235000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115405000" />
+    <option name="totallyTimeSpent" value="115640000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -998,7 +966,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1571#1572#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1067,7 +1038,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1571#1572#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1301,9 +1275,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ir/saitech/jlightcast/Utils/JLCSyncedList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="1365">
+          <caret line="65" column="22" lean-forward="false" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1571#1572#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

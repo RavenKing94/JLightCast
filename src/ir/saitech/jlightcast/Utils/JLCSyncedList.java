@@ -1,12 +1,14 @@
 package ir.saitech.jlightcast.Utils;
 
 import javax.naming.SizeLimitExceededException;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class JLCSyncedList {
 
     private Object[] list;
     private Object[] olist;
-    private boolean locked = false;
+    private Lock lock = new ReentrantLock(true);
     private int len = 0;
     private int maxSize = 0;
 
@@ -18,7 +20,7 @@ public class JLCSyncedList {
     }
 
     private void orderlist(){
-        locked = true;
+        lock.lock();
         int cnt = 0;
         for (int i = 0;i<len;i++){
             if (list[i]!=null){
@@ -27,63 +29,41 @@ public class JLCSyncedList {
             }
         }
         len = cnt;
-        locked = false;
+        lock.unlock();
     }
 
     public void add(Object object) throws SizeLimitExceededException{
-        while (locked){
-            try {
-                Thread.sleep(0,10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        locked = true;
+        lock.lock();
         if (len>=maxSize) {
             throw new SizeLimitExceededException();
         }
         list[len] = object;
         len++;
-        locked = false;
+        lock.unlock();
     }
 
     public Object get(int index){
-        while (locked){
-            try {
-                Thread.sleep(0,100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        lock.lock();
         if (index>=0 && index<len) {
+            lock.unlock();
             return list[index];
-        }else throw new IndexOutOfBoundsException();
+        }else {
+            lock.unlock();
+            throw new IndexOutOfBoundsException();
+        }
+
     }
 
     public void remove(int index){
-        while (locked){
-            try {
-                Thread.sleep(0,10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        locked = true;
+        lock.lock();
         if (index>=0 && index<len) {
             list[index]=null;
             orderlist();
         }else throw new IndexOutOfBoundsException();
-        locked = false;
+        lock.unlock();
     }
 
     public int size(){
-        while (locked){
-            try {
-                Thread.sleep(0,10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
         return len;
     }
 }
